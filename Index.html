@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Portfolio</title>
+	<style>
+		/* Add some basic styling to the page */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 20px;
+		}
+
+		.about-me {
+			flex: 0 0 300px;
+			margin-right: 20px;
+		}
+
+		.about-me img {
+			width: 100%;
+			border-radius: 50%;
+		}
+
+		.about-me h1 {
+			margin: 0;
+			font-size: 24px;
+			font-weight: bold;
+			text-align: center;
+		}
+
+		.about-me p {
+			margin: 20px 0;
+			font-size: 16px;
+			line-height: 1.5;
+		}
+
+		.portfolio {
+			flex: 1;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+		}
+
+		.portfolio .item {
+			flex: 0 0 32%;
+			margin-bottom: 20px;
+		}
+
+		.portfolio img {
+			width: 100%;
+		}
+
+		/* Add some styling to the slideshow */
+		.slideshow img {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 0;
+			transition: all 0.5s ease;
+		}
+
+		.slideshow img.active {
+			opacity: 1;
+		}
+
+		.slideshow {
+			/* Center the slideshow on the page */
+			display: block;
+			margin: 0 auto;
+
+			/* Set the width to 30% of the screen's width */
+			width: 30%;
+			height: 400px;
+			overflow: hidden;
+			position: relative;
+			margin-top: 20px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="about-me">
+			<img src="https://via.placeholder.com/150" alt="Profile picture">
+			<h1>About Me</h1>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla. Vestibulum ante ipsum primis in faucibus
+			</p>
+		</div>
+	</div>
+
+	<!-- Add the slideshow container to the page -->
+	<div class="slideshow">
+		<!-- Add the images to the slideshow -->
+		<img src="https://imgv3.fotor.com/images/blog-cover-image/part-blurry-image.jpg" alt="Image 1">
+		<img src="https://az837918.vo.msecnd.net/publishedimages/articles/1733/en-CA/images/cover/1/free-download-this-stunning-alberta-scene-for-your-device-background-image-L-6.jpg" alt="Image 2">
+		<img src="https://www.industrialempathy.com/img/remote/ZiClJf-1920w.jpg" alt="Image 3">
+	</div>
+
+	<!-- Add a button to control the slideshow -->
+	<button id="prevBtn">Prev</button>
+	<button id="nextBtn">Next</button>
+
+</body>
+
+
+
+<script>
+	// Get the slideshow container and the images inside it
+const slideshow = document.querySelector('.slideshow');
+const images = slideshow.querySelectorAll('img');
+
+// Set the first image to be active (displayed)
+images[0].classList.add('active');
+
+// Get the buttons
+const prevBtn = document.querySelector('#prevBtn');
+const nextBtn = document.querySelector('#nextBtn');
+
+// Create a counter to keep track of the current image
+let current = 0;
+
+// Create a function to show the next image
+function next() {
+	// Remove the active class from the current image
+	images[current].classList.remove('active');
+
+	// Increment the counter
+	current++;
+
+	// If the counter is greater than the total number of images, set it back to 0
+	if (current >= images.length) {
+		current = 0;
+	}
+
+	// Add the active class to the new current image
+	images[current].classList.add('active');
+}
+
+// Create a function to show the previous image
+function prev() {
+	// Remove the active class from the current image
+	images[current].classList.remove('active');
+
+	// Decrement the counter
+	current--;
+
+	// If the counter is less than 0, set it to the total number of images minus 1
+	if (current < 0) {
+		current = images.length - 1;
+	}
+
+	// Add the active class to the new current image
+	images[current].classList.add('active');
+}
+
+// Add event listeners to the buttons to call the prev() and next() functions when clicked
+prevBtn.addEventListener('click', prev);
+nextBtn.addEventListener('click', next);
+
+// Set the interval to change slides every 5 seconds (5000 milliseconds)
+setInterval(next, 5000);
+
+</script>
+
+
+
+
+
+
